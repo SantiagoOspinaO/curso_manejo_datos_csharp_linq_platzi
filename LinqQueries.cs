@@ -28,18 +28,18 @@ namespace curso_manejo_datos_csharp_linq
 
     public IEnumerable<Book> GetBooksAfter2000()
     {
-      //return _booksList.Where(book => book.publishedDate.Year > 2000);
-      return from book in _booksList
-             where book.publishedDate.Year > 2000
-             select book;
+      return _booksList.Where(book => book.publishedDate.Year > 2000) ?? Enumerable.Empty<Book>();
+      // return from book in _booksList
+      //        where book.publishedDate.Year > 2000
+      //        select book;
     }
 
     public IEnumerable<Book> GetBooksOver250Pages()
     {
-      // return _booksList.Where(book => book.pageCount > 250 && book.title.Contains("in Action"));
-      return from book in _booksList
-             where book.pageCount > 250 && book.title.Contains("in Action")
-             select book;
+      return _booksList.Where(book => book.pageCount > 250 && book.title != null && book.title.Contains("in Action")) ?? Enumerable.Empty<Book>();
+      // return from book in _booksList
+      //        where book.pageCount > 250 && book.title.Contains("in Action")
+      //        select book;
     }
   }
 }
